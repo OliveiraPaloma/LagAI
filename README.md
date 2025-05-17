@@ -43,14 +43,13 @@ Clique no botão abaixo e veja o LagAI no ar, sem precisar instalar nada!
 
 [![Abrir no Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/SEU_USUARIO/LagAI/main/lagai_app.py)
 
-*(Substitua `SEU_USUARIO` pelo seu usuário do GitHub quando clonar este repositório)*
 
 ---
 
 ## 🛠️ Como rodar localmente
 
 ```bash
-git clone https://github.com/SEU_USUARIO/LagAI.git
+git clone https://github.com/Oliveira Paloma/LagAI.git
 cd LagAI
 pip install -r requirements.txt
 streamlit run lagai_app.py

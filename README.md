@@ -49,7 +49,7 @@ Clique no botão abaixo e veja o LagAI no ar, sem precisar instalar nada!
 ## 🛠️ Como rodar localmente
 
 ```bash
-git clone https://github.com/Oliveira Paloma/LagAI.git
+git clone https://github.com/OliveiraPaloma/LagAI.git
 cd LagAI
 pip install -r requirements.txt
 streamlit run lagai_app.py

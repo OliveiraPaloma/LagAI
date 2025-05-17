@@ -1,0 +1,14 @@
+[server]
+headless = true
+enableCORS = false
+port = 8501
+
+[theme]
+primaryColor = "#4B6A9B"
+backgroundColor = "#F0F2F6"
+secondaryBackgroundColor = "#E8EAED"
+textColor = "#31333F"
+font = "sans serif"
+
+[global]
+email = "seu-email@exemplo.com"

@@ -1,32 +1,57 @@
-# 🎮 LagAI — IA para Gamers Curiosos
+# 🎮 LagAI — Seu Companheiro Gamer com IA 🔍🧠
 
-Bem-vindo ao **LagAI**, o seu assistente gamer com superpoderes da **IA Gemini**, direto do Google!  
-Quer saber se um jogo tem cross-play? Precisa de um guia rápido? Ou só tá curioso sobre algum título?  
-**Digite, clique e descubra. Sem lag. Só resposta.**
+![Banner LagAI](https://media.giphy.com/media/l0HUqsz2jdQYElRm0/giphy.gif)
 
-![LagAI Banner](https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif)
+> 🤔 *“LagAI, quais jogos são cross-play?”*  
+> 🤖 *“Entre PC e Xbox? Toma aqui, padawan!”*  
 
----
-
-## 🚀 Funcionalidades
-
-- 🔍 **Busca inteligente**: Faça perguntas sobre jogos e receba respostas com IA Gemini.
-- 🕹️ **Guia de Cross-Play**: Veja quais jogos permitem jogar entre plataformas.
-- 📚 **Exploração fácil**: Interface simples e direta, feita com carinho no Streamlit.
+LagAI é um app feito pra você que joga, ragea, pesquisa, e quer saber **se dá pra jogar com o crush do Xbox**.
 
 ---
 
-GEMINI_API_KEY=GOOGLE_API_KEY
+## ⚡ Funcionalidades
 
-3. Execute com:
+🎯 **Busca com IA (Google Gemini)**  
+Faça perguntas como:
+
+> “Qual jogo FPS tem mais jogadores ativos?”  
+> “Jogos de mundo aberto com co-op?”  
+> “Dá pra jogar Diablo IV entre plataformas?”
+
+🕹️ **Guias Cross-Play**  
+Tabela prática com os jogos que rodam em tudo quanto é console.  
+(*Spoiler: Rocket League é o Messi do cross-play ⚽*)
+
+📺 **Interface intuitiva**  
+Nada de menu complicado. Sidebar bonitona, tudo direto ao ponto.
+
+---
+
+## 🧠 Por trás do Lag
+
+LagAI usa a IA do Google Gemini combinada com o Streamlit pra te entregar **respostas certeiras**, com uma interface rápida e leve.
+
+- 🌐 `streamlit`
+- 📦 `pandas`
+- 🧠 `google-generativeai`
+
+---
+
+## 🚀 Deploy com 1 Clique
+
+Clique no botão abaixo e veja o LagAI no ar, sem precisar instalar nada!
+
+[![Abrir no Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/SEU_USUARIO/LagAI/main/lagai_app.py)
+
+*(Substitua `SEU_USUARIO` pelo seu usuário do GitHub quando clonar este repositório)*
+
+---
+
+## 🛠️ Como rodar localmente
 
 ```bash
+git clone https://github.com/SEU_USUARIO/LagAI.git
+cd LagAI
 pip install -r requirements.txt
 streamlit run lagai_app.py
 
-🧠 Alimentado por:
-Google Gemini
-
-Streamlit
-
-Pandas

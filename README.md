@@ -37,9 +37,12 @@ LagAI usa a IA do Google Gemini combinada com o Streamlit pra te entregar **resp
 
 ---
 
-## 🚀 Clique no link abaixo para começar a explorar:
+## Acesse o LagAI Online
 
-[https://ayuea6k37yv4nmdhcsappcg.streamlit.app/](https://ayuea6k37yv4nmdhcsappcg.streamlit.app/)
+[![Ir para o LagAI](https://img.shields.io/badge/Ir%20para%20o%20LagAI-blue?style=for-the-badge&logo=streamlit)](https://ayuea6k37yv4nmdhcsappcg.streamlit.app/)
+
+**Clique no botão acima para começar a explorar!**
+
 ---
 
 ## 🛠️ Como rodar localmente

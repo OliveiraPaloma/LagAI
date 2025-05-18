@@ -7,7 +7,7 @@ import os
 genai.configure(api_key=os.environ['GEMINI_API_KEY'])
 model = genai.GenerativeModel('gemini-pro')
 
-st.set_page_config(page_title="LagAI para Jogadores", layout="wide")
+st.set_page_config(page_title="Central do Jogador", layout="wide")
 
 def buscar_info_jogo_online(nome_jogo):
     try:
@@ -24,7 +24,7 @@ def buscar_info_jogo_online(nome_jogo):
 
 def identificar_jogo_com_gemini(pergunta):
     try:
-        prompt = f"Qual jogo online o usuário está procurando na seguinte pergunta? Responda apenas com o nome exato do jogo, se for possível identificar um claramente. Se não for possível identificar um jogo específico, diga 'Não identificado'.\n\nPergunta: {pergunta}"
+        prompt = f"O usuário está perguntando sobre um jogo online com a seguinte frase: '{pergunta}'. Qual é o nome exato desse jogo? Se for possível identificar um jogo específico, responda apenas com o nome do jogo. Se não for possível identificar um jogo claramente, diga 'Não identificado'."
         response = model.generate_content(prompt)
         response.resolve()
         if response.text and response.text != "Não identificado":
@@ -36,11 +36,11 @@ def identificar_jogo_com_gemini(pergunta):
         return None
 
 # --- Interface ---
-st.sidebar.title("🎮 Central do Jogador")
+st.sidebar.title("🎮 Pasinel Gamer")
 page = st.sidebar.radio("Navegação", ["Início", "Buscar Jogo", "Sobre"])
 
 if page == "Início":
-    st.title("Bem-vindo à Central do Jogador!")
+    st.title("Bem-vindo Jogador!")
     st.write("Encontre informações detalhadas sobre seus jogos online favoritos.")
 
 elif page == "Buscar Jogo":

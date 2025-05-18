@@ -36,7 +36,7 @@ def identificar_jogo_com_gemini(pergunta):
         return None
 
 # --- Interface ---
-st.sidebar.title("🎮 Pasinel Gamer")
+st.sidebar.title("🎮 Painel Gamer")
 page = st.sidebar.radio("Navegação", ["Início", "Buscar Jogo", "Sobre"])
 
 if page == "Início":

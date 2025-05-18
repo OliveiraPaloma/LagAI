@@ -39,7 +39,7 @@ LagAI usa a IA do Google Gemini combinada com o Streamlit pra te entregar **resp
 
 ## 🚀 Deploy com 1 Clique
 
-[![Deploy no Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/)
+[![Deploy no Streamlit]([https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/](https://ayuea6k37yv4nmdhcsappcg.streamlit.app/))
 
 ---
 

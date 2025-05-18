@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 import os
+import json  # Importe a biblioteca json para formatar a saída
 
 st.set_page_config(page_title="LagAI com Google Search", layout="wide")
 
@@ -13,17 +14,24 @@ def buscar_jogos_online(pergunta):
         "q": pergunta,
         "engine": "google",
         "api_key": api_key,
-        "num": 10  # Solicita 10 resultados
+        "num": 10
     }
-    response = requests.get(url, params=params)
-    data = response.json()
+    try:
+        response = requests.get(url, params=params)
+        response.raise_for_status()  # Lança uma exceção para erros HTTP (status code diferente de 200)
+        data = response.json()
+        print("Resposta bruta da SerpAPI:")
+        print(json.dumps(data, indent=4, ensure_ascii=False))  # Imprime a resposta formatada
 
-    if "organic_results" in data:
-        resultados = data["organic_results"]
-        texto = "\n\n".join([f"🔗 [{res['title']}]({res['link']})\n{res.get('snippet', '')}" for res in resultados])  # Agora pega todos os resultados
-    else:
-        texto = "Não encontrei nada. 😢"
-    return texto
+        if "organic_results" in data:
+            resultados = data["organic_results"]
+            texto = "\n\n".join([f"🔗 [{res['title']}]({res['link']})\n{res.get('snippet', '')}" for res in resultados])
+        else:
+            texto = "Não encontrei nada. 😢"
+        return texto
+    except requests.exceptions.RequestException as e:
+        print(f"Erro ao conectar com a SerpAPI: {e}")
+        return "Ocorreu um erro ao buscar os resultados. 😢"
 
 # --- Interface ---
 st.sidebar.title("🎮 LagAI Menu")

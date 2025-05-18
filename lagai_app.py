@@ -1,39 +1,54 @@
 import streamlit as st
-import requests
-from bs4 import BeautifulSoup
+import pandas as pd
+import google.generativeai as genai
+import os
 
-def buscar_info_techtudo(url="https://www.techtudo.com.br/listas/2024/07/15-jogos-de-ps4-com-crossplay-no-pc-ou-xbox-para-jogar-com-seus-amigos.ghtml"):
+# Configurar a API Gemini
+genai.configure(api_key=os.environ['GEMINI_API_KEY'])
+model = genai.GenerativeModel('gemini-pro')
+
+st.set_page_config(page_title="LagAI com Gemini", layout="wide")
+
+def buscar_jogos_online_gemini(pergunta):
     try:
-        response = requests.get(url)
-        response.raise_for_status()  # Lança uma exceção para erros HTTP
-        soup = BeautifulSoup(response.content, 'html.parser')
+        prompt_parts = [
+            f"Responda à seguinte pergunta sobre jogos online, buscando informações relevantes na web:\n\n{pergunta}\n\nListe os principais resultados encontrados e seus respectivos links, se disponíveis. Se não encontrar resultados relevantes, informe claramente."
+        ]
+        response = model.generate_content(prompt_parts)
+        response.resolve() # Espera a resposta ser completamente gerada
 
-        jogos = []
-        lista_jogos = soup.find_all('div', class_='list-item') # Inspecionar o site para encontrar o elemento correto
+        if response.text:
+            return response.text
+        else:
+            return "Não encontrei resultados relevantes. 😢"
+    except Exception as e:
+        print(f"Ocorreu um erro ao buscar com a Gemini API: {e}")
+        return "Ocorreu um erro na busca. 😢"
 
-        for item in lista_jogos:
-            nome_jogo_element = item.find('a', class_='item-title')
-            crossplay_info_element = item.find('div', class_='item-description') # Ajustar conforme a estrutura real
+# --- Interface ---
+st.sidebar.title("🎮 LagAI Menu")
+page = st.sidebar.radio("Navegação", ["Início", "Busca com IA", "Guias Cross-Play", "Sobre"])
 
-            if nome_jogo_element and crossplay_info_element:
-                nome_jogo = nome_jogo_element.text.strip()
-                crossplay_info = crossplay_info_element.text.strip()
-                jogos.append({"jogo": nome_jogo, "crossplay": crossplay_info, "fonte": "TechTudo"})
+if page == "Início":
+    st.title("🎮 Bem-vindo ao LagAI!")
+    st.write("Explore o universo dos jogos cross-play com a Gemini!")
 
-        return jogos
+elif page == "Busca com IA":
+    st.title("🔍 Pesquise sobre jogos (com Gemini)")
+    consulta = st.text_input("Digite o que você quer saber:")
+    if st.button("Buscar"):
+        with st.spinner("Consultando a IA..."):
+            resultado = buscar_jogos_online_gemini(consulta)
+            st.markdown("### Resultado:")
+            st.markdown(resultado, unsafe_allow_html=True)
 
-    except requests.exceptions.RequestException as e:
-        st.error(f"Erro ao acessar o TechTudo: {e}")
-        return []
+elif page == "Guias Cross-Play":
+    st.header("🕹️ Jogos com suporte a Cross-Play")
+    st.table(pd.DataFrame({
+        "Jogo": ["Fortnite", "Rocket League"],
+        "Plataformas": ["PC, PS, Xbox", "PC, PS, Xbox, Switch"]
+    }))
 
-st.title("Resultados de Cross-Play (TechTudo)")
-resultados = buscar_info_techtudo()
-
-if resultados:
-    for jogo in resultados:
-        st.write(f"**Jogo:** {jogo['jogo']}")
-        st.write(f"**Cross-Play:** {jogo['crossplay']}")
-        st.write(f"**Fonte:** {jogo['fonte']}")
-        st.markdown("---")
-else:
-    st.info("Nenhum resultado encontrado no TechTudo.")
+elif page == "Sobre":
+    st.header("👾 Sobre o LagAI")
+    st.write("Este app usa a Gemini API para trazer informações sobre jogos! Criado por uma gamer raiz 🕹️❤️")

@@ -1,7 +1,7 @@
 import streamlit as st
- import pandas as pd
- import google.generativeai as genai
- 
+import pandas as pd
+import google.generativeai as genai
+import os
 
  #Configuração da página
  st.set_page_config(page_title="LagAI",page_icon="🎮",layout="wide")

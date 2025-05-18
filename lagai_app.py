@@ -1,6 +1,6 @@
 import streamlit as st
- import pandas as pd
- import google.generativeai as genai
+import pandas as pd
+import google.generativeai as genai
  
 
  # Configuração da página

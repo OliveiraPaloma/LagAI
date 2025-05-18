@@ -7,56 +7,42 @@ import os
 genai.configure(api_key=os.environ['GEMINI_API_KEY'])
 model = genai.GenerativeModel('gemini-pro')
 
-st.set_page_config(page_title="Central do Jogador", layout="wide")
+st.set_page_config(page_title="LagAI com Gemini", layout="wide")
 
-def buscar_info_jogo_online(nome_jogo):
+def buscar_jogos_online_gemini(pergunta):
     try:
-        prompt = f"Busque informações detalhadas online sobre o jogo '{nome_jogo}'. Inclua detalhes sobre:\n- Suporte a cross-play (sim ou não e em quais plataformas)\n- Data de lançamento\n- Avaliações (de diferentes fontes, se possível)\n- Plataformas em que o jogo está disponível\n- Valor do jogo (preço base ou se é gratuito com compras)\n\nFormate a resposta de forma clara e concisa."
-        response = model.generate_content(prompt)
-        response.resolve()
+        prompt_parts = [
+            f"Responda à seguinte pergunta sobre jogos online, buscando informações relevantes na web:\n\n{pergunta}\n\nListe os principais resultados encontrados e seus respectivos links, se disponíveis. Se não encontrar resultados relevantes, informe claramente."
+        ]
+        response = model.generate_content(prompt_parts)
+        response.resolve() # Espera a resposta ser completamente gerada
+
         if response.text:
             return response.text
         else:
-            return f"Não encontrei informações detalhadas online sobre '{nome_jogo}'."
+            return "Não encontrei resultados relevantes. 😢"
     except Exception as e:
-        print(f"Ocorreu um erro ao buscar informações online com a Gemini API: {e}")
-        return f"Ocorreu um erro ao buscar informações sobre '{nome_jogo}'."
-
-def identificar_jogo_com_gemini(pergunta):
-    try:
-        prompt = f"O usuário está perguntando sobre um jogo online com a seguinte frase: '{pergunta}'. Qual é o nome exato desse jogo? Se for possível identificar um jogo específico, responda apenas com o nome do jogo. Se não for possível identificar um jogo claramente, diga 'Não identificado'."
-        response = model.generate_content(prompt)
-        response.resolve()
-        if response.text and response.text != "Não identificado":
-            return response.text.strip()
-        else:
-            return None
-    except Exception as e:
-        print(f"Erro ao identificar o jogo com Gemini: {e}")
-        return None
+        print(f"Ocorreu um erro ao buscar com a Gemini API: {e}")
+        return "Ocorreu um erro na busca. 😢"
 
 # --- Interface ---
-st.sidebar.title("🎮 Painel Gamer")
-page = st.sidebar.radio("Navegação", ["Início", "Buscar Jogo", "Sobre"])
+st.sidebar.title("🎮 LagAI Menu")
+page = st.sidebar.radio("Navegação", ["Início", "Busca com IA", "Guias Cross-Play", "Sobre"])
 
 if page == "Início":
-    st.title("Bem-vindo Jogador!")
-    st.write("Encontre informações detalhadas sobre seus jogos online favoritos.")
+    st.title("🎮 Bem-vindo ao LagAI!")
+    st.write("Explore o universo dos jogos cross-play com a Gemini!")
 
-elif page == "Buscar Jogo":
-    st.title("🔍 Buscar Informações de Jogo")
-    consulta = st.text_input("Digite o nome do jogo que você procura:")
+elif page == "Busca com IA":
+    st.title("🔍 Pesquise sobre jogos (com Gemini)")
+    consulta = st.text_input("Digite o que você quer saber:")
     if st.button("Buscar"):
-        with st.spinner("Buscando informações..."):
-            nome_do_jogo = identificar_jogo_com_gemini(consulta)
-            if nome_do_jogo:
-                info_jogo = buscar_info_jogo_online(nome_do_jogo)
-                st.subheader(f"Informações sobre: {nome_do_jogo}")
-                st.markdown(info_jogo, unsafe_allow_html=True)
-            else:
-                st.info("Não foi possível identificar um jogo específico na sua busca. Por favor, seja mais específico.")
+        with st.spinner("Consultando a IA..."):
+            resultado = buscar_jogos_online_gemini(consulta)
+            st.markdown("### Resultado:")
+            st.markdown(resultado, unsafe_allow_html=True)
 
-elif page == "Guias Cross-Play": # Mantive a página de guias como estava
+elif page == "Guias Cross-Play":
     st.header("🕹️ Jogos com suporte a Cross-Play")
     st.table(pd.DataFrame({
         "Jogo": ["Fortnite", "Rocket League"],
@@ -64,5 +50,5 @@ elif page == "Guias Cross-Play": # Mantive a página de guias como estava
     }))
 
 elif page == "Sobre":
-    st.header("👾 Sobre a Central do Jogador")
-    st.write("Um espaço para jogadores encontrarem informações importantes sobre seus jogos online.")
+    st.header("👾 Sobre o LagAI")
+    st.write("Este app usa a Gemini API para trazer informações sobre jogos! Criado por uma gamer raiz 🕹️❤️")

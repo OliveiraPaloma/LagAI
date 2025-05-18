@@ -1,37 +1,29 @@
 import streamlit as st
 import pandas as pd
-import requests
+import google.generativeai as genai
 import os
-import json  # Importe a biblioteca json para formatar a saída
 
-st.set_page_config(page_title="LagAI com Google Search", layout="wide")
+# Configurar a API Gemini
+genai.configure(api_key=os.environ['GEMINI_API_KEY'])
+model = genai.GenerativeModel('gemini-pro')
 
-# Função para buscar via API do SerpAPI
-def buscar_jogos_online(pergunta):
-    api_key = st.secrets["GEMINI_API_KEY"]
-    url = "https://serpapi.com/search"
-    params = {
-        "q": pergunta,
-        "engine": "google",
-        "api_key": api_key,
-        "num": 10
-    }
+st.set_page_config(page_title="LagAI com Gemini", layout="wide")
+
+def buscar_jogos_online_gemini(pergunta):
     try:
-        response = requests.get(url, params=params)
-        response.raise_for_status()  # Lança uma exceção para erros HTTP (status code diferente de 200)
-        data = response.json()
-        print("Resposta bruta da SerpAPI:")
-        print(json.dumps(data, indent=4, ensure_ascii=False))  # Imprime a resposta formatada
+        prompt_parts = [
+            f"Responda à seguinte pergunta sobre jogos online, buscando informações relevantes na web:\n\n{pergunta}\n\nListe os principais resultados encontrados e seus respectivos links, se disponíveis. Se não encontrar resultados relevantes, informe claramente."
+        ]
+        response = model.generate_content(prompt_parts)
+        response.resolve() # Espera a resposta ser completamente gerada
 
-        if "organic_results" in data:
-            resultados = data["organic_results"]
-            texto = "\n\n".join([f"🔗 [{res['title']}]({res['link']})\n{res.get('snippet', '')}" for res in resultados])
+        if response.text:
+            return response.text
         else:
-            texto = "Não encontrei nada. 😢"
-        return texto
-    except requests.exceptions.RequestException as e:
-        print(f"Erro ao conectar com a SerpAPI: {e}")
-        return "Ocorreu um erro ao buscar os resultados. 😢"
+            return "Não encontrei resultados relevantes. 😢"
+    except Exception as e:
+        print(f"Ocorreu um erro ao buscar com a Gemini API: {e}")
+        return "Ocorreu um erro na busca. 😢"
 
 # --- Interface ---
 st.sidebar.title("🎮 LagAI Menu")
@@ -39,14 +31,14 @@ page = st.sidebar.radio("Navegação", ["Início", "Busca com IA", "Guias Cross-
 
 if page == "Início":
     st.title("🎮 Bem-vindo ao LagAI!")
-    st.write("Explore o universo dos jogos cross-play!")
+    st.write("Explore o universo dos jogos cross-play com a Gemini!")
 
 elif page == "Busca com IA":
-    st.title("🔍 Pesquise sobre jogos (com Google Search)")
+    st.title("🔍 Pesquise sobre jogos (com Gemini)")
     consulta = st.text_input("Digite o que você quer saber:")
     if st.button("Buscar"):
-        with st.spinner("Consultando a internet..."):
-            resultado = buscar_jogos_online(consulta)
+        with st.spinner("Consultando a IA..."):
+            resultado = buscar_jogos_online_gemini(consulta)
             st.markdown("### Resultado:")
             st.markdown(resultado, unsafe_allow_html=True)
 
@@ -59,4 +51,4 @@ elif page == "Guias Cross-Play":
 
 elif page == "Sobre":
     st.header("👾 Sobre o LagAI")
-    st.write("Esse app usa a API do Google via SerpAPI para trazer resultados rápidos sobre jogos! Criado por uma gamer raiz 🕹️❤️")
+    st.write("Este app usa a Gemini API para trazer informações sobre jogos! Criado por uma gamer raiz 🕹️❤️")

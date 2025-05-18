@@ -41,9 +41,8 @@ LagAI usa a IA do Google Gemini combinada com o Streamlit pra te entregar **resp
 
 Clique no botão abaixo e veja o LagAI no ar, sem precisar instalar nada!
 
-[![Abrir no Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/SEU_USUARIO/LagAI/main/lagai_app.py)
 
-([https://media.tenor.com/59hkD1K2NqQAAAAC/game-over-press-start.gif](https://www.google.com/url?sa=i&url=https%3A%2F%2Fgifer.com%2Fpt%2Fgifs%2Fjogando-video-game&psig=AOvVaw1UZEJ9M3vpwvP-mvE0swEi&ust=1747613010832000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCIjqw_fbq40DFQAAAAAdAAAAABAE))
+https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3l2cGNkcGZxa3liZjB3c2h4bnUwOWRla29ob21kYzl4NmUwbXlnZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/rgTB82z9P63fTGhxQo/giphy.gif
 ---
 
 ## 🛠️ Como rodar localmente

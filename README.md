@@ -39,10 +39,8 @@ LagAI usa a IA do Google Gemini combinada com o Streamlit pra te entregar **resp
 
 ## 🚀 Deploy com 1 Clique
 
-Clique no botão abaixo e veja o LagAI no ar, sem precisar instalar nada!
+[![Deploy no Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/)
 
-
-!https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3l2cGNkcGZxa3liZjB3c2h4bnUwOWRla29ob21kYzl4NmUwbXlnZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/rgTB82z9P63fTGhxQo/giphy.gif
 ---
 
 ## 🛠️ Como rodar localmente

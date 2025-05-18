@@ -12,14 +12,15 @@ def buscar_jogos_online(pergunta):
     params = {
         "q": pergunta,
         "engine": "google",
-        "api_key": api_key
+        "api_key": api_key,
+        "num": 10  # Solicita 10 resultados
     }
     response = requests.get(url, params=params)
     data = response.json()
 
     if "organic_results" in data:
         resultados = data["organic_results"]
-        texto = "\n\n".join([f"🔗 [{res['title']}]({res['link']})\n{res.get('snippet', '')}" for res in resultados[:5]])
+        texto = "\n\n".join([f"🔗 [{res['title']}]({res['link']})\n{res.get('snippet', '')}" for res in resultados])  # Agora pega todos os resultados
     else:
         texto = "Não encontrei nada. 😢"
     return texto

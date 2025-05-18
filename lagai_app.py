@@ -52,8 +52,3 @@ elif page == "Guias Cross-Play":
 elif page == "Sobre":
     st.header("👾 Sobre o LagAI")
     st.write("Este app usa a Gemini API para trazer informações sobre jogos! Criado por uma gamer raiz 🕹️❤️")
- 
-
- elif page == "Sobre":
-  st.header("👾 Sobre o LagAI")
-  st.write("Este app usa a Gemini API para trazer informações sobre jogos! Criado por uma gamer raiz 🕹️❤️")

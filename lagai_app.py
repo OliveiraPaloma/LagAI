@@ -7,7 +7,7 @@ st.set_page_config(page_title="LagAI com Google Search", layout="wide")
 
 # Função para buscar via API do SerpAPI
 def buscar_jogos_online(pergunta):
-    api_key = st.secrets["SERPAPI_KEY"]
+    api_key = st.secrets["GEMINI_API_KEY"]
     url = "https://serpapi.com/search"
     params = {
         "q": pergunta,

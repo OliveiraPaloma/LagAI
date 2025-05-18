@@ -22,18 +22,18 @@ def buscar_jogos_online_gemini(pergunta):
         else:
             return "Não encontrei resultados relevantes. 😢"
     except Exception as e:
-        print(f"Ocorreu um erro ao buscar com a Gemini API: {e}")
+        print(f"Ocorreu um erro ao buscar na web: {e}")
         return "Ocorreu um erro na busca. 😢"
 
 # --- Interface ---
 st.sidebar.title("🎮 LagAI Menu")
-page = st.sidebar.radio("Navegação", ["Início", "Busca com IA", "Guias Cross-Play", "Sobre"])
+page = st.sidebar.radio("Navegação", ["Início", "Busca Web", "Guias Cross-Play", "Sobre"])
 
 if page == "Início":
     st.title("🎮 Bem-vindo ao LagAI!")
-    st.write("Explore o universo dos jogos cross-play com a Gemini!")
+    st.write("Explore o universo dos jogos cross-play !")
 
-elif page == "Busca com IA":
+elif page == "Busca Web":
     st.title("🔍 Pesquise sobre jogos (com Gemini)")
     consulta = st.text_input("Digite o que você quer saber:")
     if st.button("Buscar"):

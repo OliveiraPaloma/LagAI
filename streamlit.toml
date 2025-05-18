@@ -1,5 +1,1 @@
-[general]
-email = "oliveirapaloma189@gmail.com"
-
-[server]
-headless = true
+CHAVE_API_GEMINI = "CHAVE_API_DO_GOOGLE"

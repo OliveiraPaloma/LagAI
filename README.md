@@ -59,4 +59,4 @@ LagAI usa a IA do Google Gemini combinada com o Streamlit pra te entregar **resp
 **Clique no botão acima para começar a explorar!**
 
 ---
-
+O aplicativo LagAI foi criado com o objetivo de aplicar os conhecimentos adquiridos durante o curso da Imersão Alura Maio de 2025, servindo como projeto de conclusão do curso.

@@ -43,7 +43,7 @@ Clique no botão abaixo e veja o LagAI no ar, sem precisar instalar nada!
 
 [![Abrir no Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/SEU_USUARIO/LagAI/main/lagai_app.py)
 
-
+![LagAI banner]([https://media.tenor.com/59hkD1K2NqQAAAAC/game-over-press-start.gif](https://www.google.com/url?sa=i&url=https%3A%2F%2Fgifer.com%2Fpt%2Fgifs%2Fjogando-video-game&psig=AOvVaw1UZEJ9M3vpwvP-mvE0swEi&ust=1747613010832000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCIjqw_fbq40DFQAAAAAdAAAAABAE))
 ---
 
 ## 🛠️ Como rodar localmente
@@ -54,7 +54,3 @@ cd LagAI
 pip install -r requirements.txt
 streamlit run lagai_app.py
 
-👾 Resultado na prática:
-
-Feito com ❤️ e alguns rage quits pela @oliveirap
-![LagAI banner]([https://media.tenor.com/59hkD1K2NqQAAAAC/game-over-press-start.gif](https://www.google.com/url?sa=i&url=https%3A%2F%2Fgifer.com%2Fpt%2Fgifs%2Fjogando-video-game&psig=AOvVaw1UZEJ9M3vpwvP-mvE0swEi&ust=1747613010832000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCIjqw_fbq40DFQAAAAAdAAAAABAE))

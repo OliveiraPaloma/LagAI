@@ -38,7 +38,7 @@ elif page == "Guias Cross-Play":
 
 elif page == "Sobre":
     st.header("👾 Sobre o LagAI")
-    st.write("Esse site usa a IA Gemini para trazer respostas inteligentes sobre o mundo dos jogos!")%%writefile lagai_app.py
+    st.write("Esse site usa a IA Gemini para trazer respostas inteligentes sobre o mundo dos jogos!")
 import streamlit as st
 import pandas as pd
 import google.generativeai as genai

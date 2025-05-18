@@ -45,11 +45,3 @@ LagAI usa a IA do Google Gemini combinada com o Streamlit pra te entregar **resp
 
 ---
 
-## 🛠️ Como rodar localmente
-
-```bash
-git clone https://github.com/OliveiraPaloma/LagAI.git
-cd LagAI
-pip install -r requirements.txt
-streamlit run lagai_app.py
-

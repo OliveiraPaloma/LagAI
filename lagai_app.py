@@ -46,7 +46,7 @@ elif page == "Guias Cross-Play":
     st.header("🕹️ Jogos com suporte a Cross-Play")
     st.table(pd.DataFrame({
         "Jogo": ["Fortnite", "Rocket League", "Ghostbusters", "Battlefield 2042", "Brawlhalla", "Among Us", "Warframe"],
-        "Plataformas": ["PC, PS, Xbox", "PC, PS, Xbox, Switch"]
+        "Plataformas": ["PC, PS, Xbox", "PC, PS, Xbox, Switch", "PC, PS, Xbox", "PC, PS, Xbox,", "PC, PS, Xbox", "PC, PS, Xbox", "PC, PS, Xbox", "PC, PS, Xbox"]
     }))
 
 elif page == "Sobre":

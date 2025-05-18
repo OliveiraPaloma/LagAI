@@ -1,52 +1,31 @@
 import pandas as pd
-
 import requests
-
 import os
 
-
-
 st.set_page_config(page_title="LagAI com Google Search", layout="wide")
-
-
 
 # Função para buscar via API do SerpAPI
 
 def buscar_jogos_online(pergunta):
-
-    api_key = st.secrets["GEMINI_API_KEY"]
-
-    url = "https://serpapi.com/search"
-
+  api_key = st.secrets["GEMINI_API_KEY"]
+  url = "https://serpapi.com/search"
     params = {
-
         "q": pergunta,
-
         "engine": "google",
-
         "api_key": api_key
-
     }
 
     response = requests.get(url, params=params)
-
     data = response.json()
 
-
-
     if "organic_results" in data:
-
         resultados = data["organic_results"]
-
         texto = "\n\n".join([f"🔗 [{res['title']}]({res['link']})\n{res.get('snippet', '')}" for res in resultados[:5]])
 
     else:
-
         texto = "Não encontrei nada. 😢"
 
     return texto
-
-
 
 # --- Interface ---
 
@@ -73,11 +52,9 @@ elif page == "Busca com IA":
     if st.button("Buscar"):
 
         with st.spinner("Consultando a internet..."):
-
+          
             resultado = buscar_jogos_online(consulta)
-
             st.markdown("### Resultado:")
-
             st.markdown(resultado, unsafe_allow_html=True)
 
 
@@ -93,8 +70,6 @@ elif page == "Guias Cross-Play":
         "Plataformas": ["PC, PS, Xbox", "PC, PS, Xbox, Switch"]
 
     }))
-
-
 
 elif page == "Sobre":
 
